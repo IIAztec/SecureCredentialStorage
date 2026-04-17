@@ -73,7 +73,7 @@ g++ -std=c++11 registration.cpp -o registration
 registration.exe
 ```
 ## Project Structure
-
+```bash
 passwordManager.cpp   # Main password manager logic
 registration.cpp      # User registration tool
 base.csv              # User database (login + hashed master password)
@@ -83,7 +83,7 @@ passwordManager       # Compiled executable (Linux/macOS)
 registration          # Compiled executable (Linux/macOS)
 passwordManager.exe   # Compiled executable (Windows)
 registration.exe      # Compiled executable (Windows)
-
+```
 ## Author
 
 **Ignat Danilin**
