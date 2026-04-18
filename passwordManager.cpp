@@ -438,6 +438,9 @@ void menu(account user, string cryptoKey) { // providing the main menu for the u
             }
         }
     } while(choice < 7);
+    if(choice >= 7) {
+        menu(user, cryptoKey);
+    }
 }
 
 int main() {
