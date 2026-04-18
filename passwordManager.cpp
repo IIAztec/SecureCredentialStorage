@@ -373,7 +373,10 @@ void menu(account user, string cryptoKey) { // providing the main menu for the u
     service findByService; // creating a service struct to store the data for the service that the user is trying to find or edit, this struct will be populated with the data for that service if it is found in the user's storage, and can then be used for various operations in the program, such as displaying the details of that service, editing the login or password for that service, or deleting that service from the user's storage
     vector<service> data; // creating a vector of service structs to store the data for all the entries in the user's storage, this vector will be populated with the data loaded from the user's storage file when the user logs in, and can then be used for various operations in the program, such as finding, editing, or deleting entries, without having to read from or write to the file every time, this can improve performance and make the program more efficient
     data = loadData(user); // loading the existing entries from the user's storage file into the vector of service structs in memory, this allows the program to work with the data in memory and perform operations on it, such as finding, editing, or deleting entries, without having to read from or write to the file every time, this can improve performance and make the program more efficient, as the user interacts with their data through the menu options
+    bool finish = false;
     do { // displaying the main menu options to the user and prompting them to enter their choice, based on the user's input, it calls the appropriate functions to perform the selected operation on the user's data in memory, and then updates the user's storage file with any changes made to ensure that the data is consistent and up to date, this loop continues until the user chooses to exit the program
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Welcome to IgnatPasswordManager." << endl;
         cout << "----" << endl;
         cout << "1. Add new entry" << endl;
@@ -430,6 +433,7 @@ void menu(account user, string cryptoKey) { // providing the main menu for the u
             }
             case 6: { // if the user chooses to exit the program, the function informs the user that they are exiting, and then calls the exit function to terminate the program, this allows the user to safely exit the program when they are done managing their stored data
                 cout << "Goodbye!" << endl;
+                finish = true;
                 exit(0);
             }
             default: { // if the user enters an invalid choice that is not among the menu options, the function informs the user that the input is wrong and prompts them to enter a valid choice, this ensures that the user can only select from the available options and prevents errors or issues that could arise from invalid input, then it breaks out of the switch statement to return to the main menu
@@ -437,10 +441,7 @@ void menu(account user, string cryptoKey) { // providing the main menu for the u
                 break;
             }
         }
-    } while(choice < 7);
-    if(choice >= 7) {
-        menu(user, cryptoKey);
-    }
+    } while(!finish);
 }
 
 int main() {
